@@ -11,6 +11,8 @@
 #include <cmath>
 #include <iostream>
 #include <boost/math/quadrature/naive_monte_carlo.hpp>
+#include <boost/math/quadrature/gauss_kronrod.hpp>
+using namespace boost::math::quadrature;
 
 class BetaDistribution {
 public:
@@ -28,8 +30,8 @@ public:
     double variance() const;
     double mode() const;
     static BetaDistribution fit(const std::vector<double>& data);
-    double get_alpha() const { return alpha_; }
-    double get_beta() const { return beta_; }
+    double getAlpha() const { return alpha_; }
+    double getBeta() const { return beta_; }
 
     std::string summary() const;
 
@@ -37,9 +39,9 @@ private:
     double alpha_;
     double beta_;
 
-    double beta_function(double a, const double b) const;
+    double betaFunction(double a, const double b) const;
 
-    double incomplete_beta(double x, double a, double b) const;
+    double incompleteBeta(double x, double a, double b) const;
 };
 
 
