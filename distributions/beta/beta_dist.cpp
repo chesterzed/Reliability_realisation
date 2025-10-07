@@ -25,13 +25,13 @@ double BetaDistribution::incompleteBeta(double x, double a, double b) const {
         return std::pow(tetha, a - 1) * std::pow(1 - tetha, b - 1);
     };
 
-    double integral = gauss_kronrod<double, 61>::integrate(integralF, );
+    double integral = gauss_kronrod<double, 61>::integrate(integralF, 0.0, x);
 
     return integral;
 }
 
 double BetaDistribution::pdf(double t) const {
-    return 1./beta_function(alpha_, beta_) * pow(t, alpha_ - 1) * pow(1 - t, beta_ - 1);
+    return 1./betaFunction(alpha_, beta_) * pow(t, alpha_ - 1) * pow(1 - t, beta_ - 1);
 }
 
 
@@ -51,7 +51,7 @@ double BetaDistribution::hf(double x) const {
 }
 
 double BetaDistribution::chf(double x) const {
-    double surviavalF - sf(x);
+    double surviavalF = sf(x);
     if (surviavalF <= 0)
         return std::numeric_limits<double>::infinity();
     return -std::log(surviavalF);
@@ -81,3 +81,30 @@ double BetaDistribution::mode() const {
         return std::numeric_limits<double>::quiet_NaN();
     }
 }
+
+//void BetaDistribution::plot(int points = 200, bool show_cdf = true) const {
+//    std::vector<double> x(points), y_pdf(points), y_cdf(points);
+//    for (int i = 0; i < points; ++i) {
+//        x[i] = static_cast<double>(i) / (points - 1);
+//        y_pdf[i] = pdf(x[i]);
+//        y_cdf[i] = cdf(x[i]);
+//    }
+//
+//    plt::figure();
+//    plt::subplot(2, 1, 1);
+//    plt::plot(x, y_pdf, "b-");
+//    plt::title("Beta Distribution PDF");
+//    plt::xlabel("x");
+//    plt::ylabel("Density");
+//
+//    if (show_cdf) {
+//        plt::subplot(2, 1, 2);
+//        plt::plot(x, y_cdf, "r-");
+//        plt::title("Beta Distribution CDF");
+//        plt::xlabel("x");
+//        plt::ylabel("Probability");
+//    }
+//
+//    plt::tight_layout();
+//    plt::show();
+//}
