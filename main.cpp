@@ -8,12 +8,13 @@
 int main(void) {
 //    printf("Hello world");
     BetaDistribution diagram = BetaDistribution(3, 5);
-//    diagram.plot();
+    diagram.plot(100, true);
     for (int i = 0; i <= 10; ++i) {
         printf("\n%lf", diagram.pdf((double)i/10));
         printf(" - %lf", (double)i/10);
     }
     // Подготовка данных
+
 
     return 0;
 }

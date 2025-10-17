@@ -12,8 +12,8 @@
 #include <iostream>
 #include <boost/math/quadrature/naive_monte_carlo.hpp>
 #include <boost/math/quadrature/gauss_kronrod.hpp>
-//#include "../../matplotlibcpp.h"
-//namespace plt = matplotlibcpp;
+#include "../../matplotlibcpp.h"
+namespace plt = matplotlibcpp;
 using namespace boost::math::quadrature;
 
 class BetaDistribution {
@@ -36,7 +36,7 @@ public:
     double getBeta() const { return beta_; }
 
     std::string summary() const;
-//    void plot(int points, bool show_cdf) const;
+    void plot(int points, bool show_cdf) const;
 
 private:
     double alpha_;
